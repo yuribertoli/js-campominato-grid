@@ -18,6 +18,8 @@ play.addEventListener("click", function() {
                 this.classList.add("active");
                 }
             )
+
+            square.innerHTML = square.innerHTML + i;
         
         }
     
@@ -35,6 +37,8 @@ play.addEventListener("click", function() {
                 this.classList.add("active");
                 }
             )
+
+            square.innerHTML = square.innerHTML + i;
         
         }
     
@@ -52,6 +56,8 @@ play.addEventListener("click", function() {
                 this.classList.add("active");
                 }
             )
+
+            square.innerHTML = square.innerHTML + i;
         
         }
     
