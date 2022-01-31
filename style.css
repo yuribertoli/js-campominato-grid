@@ -8,8 +8,8 @@
 body {
     background-color: cornflowerblue;
 }
-/* Header */
 
+/* Header */
 header {
     height: 70px;
     display: flex;
@@ -64,6 +64,7 @@ button {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    box-shadow: 2px 2px 10px 0px #000000;
 }
 
 .container h2 {
@@ -112,8 +113,8 @@ button {
     background-color: bisque;
     color: black;
 }
-/* Header */
 
+/* Header */
 footer {
     position: fixed;
     bottom: 0;
