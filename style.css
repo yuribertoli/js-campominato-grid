@@ -62,9 +62,15 @@ button {
     border: 1px solid black;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
-.square {
+.container h2 {
+    color: white;
+}
+
+.square10 {
     width: calc(100% / 10);
     height: calc(100% / 10);
     border: 1px solid black;
@@ -74,7 +80,27 @@ button {
     justify-content: center;
 }
 
-.square.active {
+.square9 {
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+    border: 1px solid black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.square7 {
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+    border: 1px solid black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.active {
     background-color: bisque;
     color: black;
 }
