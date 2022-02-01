@@ -145,7 +145,12 @@ function playButton() {
     
         let risultatoGioco = document.getElementById("fine-gioco");
     
-        risultatoGioco.innerHTML = `hai totalizzato ${tentativi.length} tentativi, riprova!` //inserisco il numero di tentativi fatti nel DOM
+        //inserisco il numero di tentativi fatti nel DOM
+        if (tentativi.length == 1) { //creo if per l'unica variante dove si usa il singolare a tentativi
+            risultatoGioco.innerHTML = `hai totalizzato ${tentativi.length} tentativo, riprova!`
+        } else {
+            risultatoGioco.innerHTML = `hai totalizzato ${tentativi.length} tentativi, riprova!`
+        }
     
     }
 
