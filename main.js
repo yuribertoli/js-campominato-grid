@@ -2,13 +2,9 @@ const container = document.querySelector(".container");
 const levels = document.getElementById("levels");
 const play = document.getElementsByTagName("button")[0];
 const tentativi = [];
-let arrayNumeriCasuali = playButton();
 
 //Gestisco l'evento del click
 play.addEventListener("click", playButton);
-
-
-
 
 
 
@@ -48,64 +44,7 @@ function numeroCasuale(max) {
 
 }
 
-//funzione per creare un numero di quadrati definiti da una variabile e aggiungere
-//di conseguenza una classe specifica. Alla fine aggiunge un numero progressivo per ogni quadrato
-//ritorno gli indici dei div creati in un array
-function livelloGioco(numeroQuadrati, classe) {
 
-    for (let i = 1; i <= numeroQuadrati; i++) {
-
-        let square = document.createElement("div");
-        square.classList.add(classe);
-        container.appendChild(square);
-
-        square.addEventListener("click", gestisciClick);
-
-        square.innerHTML = square.innerHTML + i;
-    
-    }
-
-}
-
-function gestisciClick() {
-
-    this.classList.add("active");                       //aggiungo la classe per cambiare il colore della cella
-    this.removeEventListener("click", gestisciClick);   //tolgo la possibilità di cliccarci sopra un'altra volta
-
-    let numeroSquare = parseInt(this.innerText);        //prendo il valore numerico della cella sopra cui ho cliccato
-
-    if (arrayNumeriCasuali.includes(numeroSquare)) {    //se clicco su una cella che ha come valore un numero dell'array con le bombe
-
-        fine();                                         //finisce il gioco
-
-    } else {
-
-        tentativi.push(arrayNumeriCasuali);             //conteggio i tentativi con il numero delle celle cliccate
-    }
-
-} 
-
-function fine() {
-
-    const celle = document.querySelectorAll(".container div");  //prendo tutte le celle create
-
-    for (let i=0; i<celle.length; i++) {
-
-        if (arrayNumeriCasuali.includes(parseInt(celle[i].innerText))) { //per tutte le celle che hanno il valore incluso nella lista delle bombe
-
-            celle[i].classList.add("exploded");                          //aggiungo la classe esplosa
-
-        }
-
-        celle[i].removeEventListener("click", gestisciClick);       //rimuovo la possibilità di cliccare sulle restanti celle e continuare a giocare
-
-    }
-
-    let risultatoGioco = document.getElementById("fine-gioco");
-
-    risultatoGioco.innerHTML = `hai totalizzato ${tentativi.length} tentativi, riprova!`
-
-}
 //funzione per definire variabili dei livelli di difficoltà e posizioni bombe create
 function playButton() {
 
@@ -147,6 +86,65 @@ function playButton() {
     }    
 
     console.log(arrayNumeriCasuali);
+
+    //funzione per creare un numero di quadrati definiti da una variabile e aggiungere
+    //di conseguenza una classe specifica. Alla fine aggiunge un numero progressivo per ogni quadrato
+    //ritorno gli indici dei div creati in un array
+    function livelloGioco(numeroQuadrati, classe) {
+
+        for (let i = 1; i <= numeroQuadrati; i++) {
+
+            let square = document.createElement("div");
+            square.classList.add(classe);
+            container.appendChild(square);
+
+            square.addEventListener("click", gestisciClick);
+
+            square.innerHTML = square.innerHTML + i;
+        
+        }
+
+    }
+
+    function gestisciClick() {
+
+        this.classList.add("active");                       //aggiungo la classe per cambiare il colore della cella
+        this.removeEventListener("click", gestisciClick);   //tolgo la possibilità di cliccarci sopra un'altra volta
+    
+        let numeroSquare = parseInt(this.innerText);        //prendo il valore numerico della cella sopra cui ho cliccato
+    
+        if (arrayNumeriCasuali.includes(numeroSquare)) {    //se clicco su una cella che ha come valore un numero dell'array con le bombe
+    
+            fine();                                         //finisce il gioco
+    
+        } else {
+    
+            tentativi.push(arrayNumeriCasuali);             //conteggio i tentativi con il numero delle celle cliccate
+        }
+    
+    } 
+    
+    function fine() {
+    
+        const celle = document.querySelectorAll(".container div");  //prendo tutte le celle create
+    
+        for (let i=0; i<celle.length; i++) {
+    
+            if (arrayNumeriCasuali.includes(parseInt(celle[i].innerText))) { //per tutte le celle che hanno il valore incluso nella lista delle bombe
+    
+                celle[i].classList.add("exploded");                          //aggiungo la classe esplosa
+    
+            }
+    
+            celle[i].removeEventListener("click", gestisciClick);       //rimuovo la possibilità di cliccare sulle restanti celle e continuare a giocare
+    
+        }
+    
+        let risultatoGioco = document.getElementById("fine-gioco");
+    
+        risultatoGioco.innerHTML = `hai totalizzato ${tentativi.length} tentativi, riprova!`
+    
+    }
 
     return arrayNumeriCasuali;
 
