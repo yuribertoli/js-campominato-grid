@@ -1,7 +1,7 @@
 const container = document.querySelector(".container");
 const levels = document.getElementById("levels");
 const play = document.getElementsByTagName("button")[0];
-const tentativi = [];
+const tentativi = []; //array per conteggiare i tentativi, verranno mostrati a fine gioco
 
 //Gestisco l'evento del click
 play.addEventListener("click", playButton);
@@ -25,7 +25,7 @@ function numeriRandomUnici(quadratiPresenti) {
         // -1 significa "not found"
         if (numeriRandom.indexOf(numero) === -1) {
     
-            numeriRandom.push(numero);
+            numeriRandom.push(numero); //inserisco i numeri dentro l'array numeriRandom
         
         } 
     
@@ -45,11 +45,12 @@ function numeroCasuale(max) {
 }
 
 
-//funzione per definire variabili dei livelli di difficoltà e posizioni bombe create
+//funzione per definire sviluppo del gioco su click Play
 function playButton() {
 
     //resetto i valori di inizio gioco
     let risultatoGioco = document.getElementById("fine-gioco");
+
     risultatoGioco.innerHTML = "";
     container.innerHTML = "";
     tentativi.length = 0;
@@ -67,8 +68,8 @@ function playButton() {
     switch (levels.value) {
 
         case "Easy":
-            livelloGioco(squaresEasy, classEasy);
-            numeriRandomUnici(squaresEasy);
+            livelloGioco(squaresEasy, classEasy); //creo numero quadrati e classe corrispondente
+            numeriRandomUnici(squaresEasy);       //creo numeri casuali
             arrayNumeriCasuali = numeriRandomUnici(squaresEasy); //definisco i numeri delle caselle dove sono le bombe
             break;
 
@@ -94,18 +95,19 @@ function playButton() {
 
         for (let i = 1; i <= numeroQuadrati; i++) {
 
-            let square = document.createElement("div");
-            square.classList.add(classe);
-            container.appendChild(square);
+            let square = document.createElement("div"); //creo div tanti quanti il livello di difficoltà richiede
+            square.classList.add(classe);               //aggiungo classe
+            container.appendChild(square);              //li inserisco dentro container come oggetti (appendChild)
 
-            square.addEventListener("click", gestisciClick);
+            square.addEventListener("click", gestisciClick);    //gestisco il click sui quadrati
 
-            square.innerHTML = square.innerHTML + i;
+            square.innerHTML = square.innerHTML + i;        //aggiungo un numero progressivo ad ognuno di loro
         
         }
 
     }
 
+    //funzione per gestione ascoltatori di eventi e fine del gioco
     function gestisciClick() {
 
         this.classList.add("active");                       //aggiungo la classe per cambiare il colore della cella
@@ -124,6 +126,7 @@ function playButton() {
     
     } 
     
+    //funzione per gestire il cambio colore sulle bombe, la rimozione del click e il conteggio finale dei tentativi
     function fine() {
     
         const celle = document.querySelectorAll(".container div");  //prendo tutte le celle create
@@ -142,7 +145,7 @@ function playButton() {
     
         let risultatoGioco = document.getElementById("fine-gioco");
     
-        risultatoGioco.innerHTML = `hai totalizzato ${tentativi.length} tentativi, riprova!`
+        risultatoGioco.innerHTML = `hai totalizzato ${tentativi.length} tentativi, riprova!` //inserisco il numero di tentativi fatti nel DOM
     
     }
 
