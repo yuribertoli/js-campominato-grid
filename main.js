@@ -108,11 +108,12 @@ function fine() {
 }
 //funzione per definire variabili dei livelli di difficoltà e posizioni bombe create
 function playButton() {
-    
+
+    //resetto i valori di inizio gioco
     let risultatoGioco = document.getElementById("fine-gioco");
-    //cancello il contenuto nel div container
-    container.innerHTML = "";
     risultatoGioco.innerHTML = "";
+    container.innerHTML = "";
+    tentativi.length = 0;
 
     //definisco le variabili da richiamare per ogni livello di difficoltà
     const squaresEasy = 100;

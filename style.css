@@ -84,7 +84,7 @@ main {
     width: calc(100% / 10);
     height: calc(100% / 10);
     border: 1px solid black;
-    color: white;
+    color: #d86500;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,7 +98,7 @@ main {
     width: calc(100% / 9);
     height: calc(100% / 9);
     border: 1px solid black;
-    color: white;
+    color: #d86500;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -112,7 +112,7 @@ main {
     width: calc(100% / 7);
     height: calc(100% / 7);
     border: 1px solid black;
-    color: white;
+    color: #d86500;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -123,13 +123,19 @@ main {
 }
 
 .active {
-    background-color: #FFD20E;
-    color: black;
+    background-image: url(img/oasi.jpg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: transparent;   
 }
 
 .exploded {
-    background-color: rgb(212, 8, 8);
-    color: black;
+    background-image: url(img/explosion.jpg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: transparent;
 }
 
 #fine-gioco {
