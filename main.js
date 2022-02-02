@@ -8,42 +8,6 @@ play.addEventListener("click", playButton);
 
 
 
-//Funzione per creare 16 numeri casuali (16 bombe) tra i livelli di difficoltà
-function numeriRandomUnici(quadratiPresenti) {
-
-    //Definisco un array per contenere le bombe del gioco
-    const numeriRandom = [];
-    const numeroBombe = 16;
-
-    //cerco se un numero esiste già, se non c'è lo aggiungo all'array
-    while (numeriRandom.length < numeroBombe) {
-
-        let numero;
-        numero = numeroCasuale(quadratiPresenti);
-    
-        // Il metodo indexOf() restituisce un indice (prima 0, poi 1, poi 2,...) da associare all'elemento trovato nell'array, restituisce invece -1 se l'elemento non è presente.
-        // -1 significa "not found"
-        if (numeriRandom.indexOf(numero) === -1) {
-    
-            numeriRandom.push(numero); //inserisco i numeri dentro l'array numeriRandom
-        
-        } 
-    
-    }
-    //console.log(numeriRandom);
-    return numeriRandom;
-
-}
-
-//funzione per creare un numero random da 1 a max
-function numeroCasuale(max) {
-
-    let numero;
-    numero = Math.floor(Math.random() * max) + 1;
-    return numero;
-
-}
-
 
 //funzione per definire sviluppo del gioco su click Play
 function playButton() {
@@ -123,6 +87,13 @@ function playButton() {
     
             tentativi.push(arrayNumeriCasuali);             //conteggio i tentativi con il numero delle celle cliccate
         }
+
+        //Per calcolare il secondo parametro della funzione Calcolabombe
+        const celle = document.querySelectorAll(".container div"); 
+        let righe = Math.sqrt(celle.length);
+        
+        //Inserisco all'interno della cella il numero prodotto dalla funzione
+        this.innerHTML = calcolaBombe(numeroSquare, righe, arrayNumeriCasuali);
     
     } 
     
@@ -133,7 +104,7 @@ function playButton() {
     
         for (let i=0; i<celle.length; i++) {
     
-            if (arrayNumeriCasuali.includes(parseInt(celle[i].innerText))) { //per tutte le celle che hanno il valore incluso nella lista delle bombe
+            if (arrayNumeriCasuali.includes(i + 1)) { //comparo i numeri delle bombe con i numeri degli indici + 1
     
                 celle[i].classList.add("exploded");                          //aggiungo la classe esplosa
     
@@ -155,6 +126,56 @@ function playButton() {
     }
 
     return arrayNumeriCasuali;
+
+}
+
+//Funzione per contare il numero di bombe adiacenti alla casella 
+function calcolaBombe(cellaCorrente, cellePerRiga, arrayBombe) {
+    let conteggio = 0;
+    for (let y = -1; y<=1; y++) {
+        for (let x = -1; x<=1; x++) {
+            let cellaTest = cellaCorrente + x + (y * cellePerRiga);
+            if (arrayBombe.includes(cellaTest)) {
+                conteggio++;
+            }
+        }
+    }
+    return conteggio;
+}
+
+//Funzione per creare 16 numeri casuali (16 bombe) tra i livelli di difficoltà
+function numeriRandomUnici(quadratiPresenti) {
+
+    //Definisco un array per contenere le bombe del gioco
+    const numeriRandom = [];
+    const numeroBombe = 16;
+
+    //cerco se un numero esiste già, se non c'è lo aggiungo all'array
+    while (numeriRandom.length < numeroBombe) {
+
+        let numero;
+        numero = numeroCasuale(quadratiPresenti);
+    
+        // Il metodo indexOf() restituisce un indice (prima 0, poi 1, poi 2,...) da associare all'elemento trovato nell'array, restituisce invece -1 se l'elemento non è presente.
+        // -1 significa "not found"
+        if (numeriRandom.indexOf(numero) === -1) {
+    
+            numeriRandom.push(numero); //inserisco i numeri dentro l'array numeriRandom
+        
+        } 
+    
+    }
+    //console.log(numeriRandom);
+    return numeriRandom;
+
+}
+
+//funzione per creare un numero random da 1 a max
+function numeroCasuale(max) {
+
+    let numero;
+    numero = Math.floor(Math.random() * max) + 1;
+    return numero;
 
 }
 

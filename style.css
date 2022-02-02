@@ -131,11 +131,10 @@ main {
 }
 
 .active {
-    background-image: url(img/oasi.jpg);
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: transparent;   
+    background-color: #ffd20d;
+    color: black;   
+    font-size: 1.2rem;
+    font-weight: 900;
 }
 
 .exploded {
