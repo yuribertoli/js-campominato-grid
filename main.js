@@ -90,8 +90,8 @@ function playButton() {
 
         //Per calcolare il secondo parametro della funzione Calcolabombe
         const celle = document.querySelectorAll(".container div"); 
-        let righe = Math.sqrt(celle.length);
-        
+        let righe = parseInt(Math.sqrt(celle.length));
+
         //Inserisco all'interno della cella il numero prodotto dalla funzione
         this.innerHTML = calcolaBombe(numeroSquare, righe, arrayNumeriCasuali);
     
@@ -130,14 +130,31 @@ function playButton() {
 }
 
 //Funzione per contare il numero di bombe adiacenti alla casella 
-function calcolaBombe(cellaCorrente, cellePerRiga, arrayBombe) {
+function calcolaBombe(cella, cellePerRiga, bombe) {
+    
     let conteggio = 0;
-    for (let y = -1; y<=1; y++) {
-        for (let x = -1; x<=1; x++) {
-            let cellaTest = cellaCorrente + x + (y * cellePerRiga);
-            if (arrayBombe.includes(cellaTest)) {
+
+    for (let y = -1; y<=1; y++) { //sull'asse delle y parto ciclando la riga sopra, poi quella centrale e infine quella sotto
+
+        let start = -1;
+        let end = 1;
+
+        //se sono ad inizio riga
+        if (cella % cellePerRiga == 1) {
+            start = 0;
+            end = 1;
+        } else if (cella % cellePerRiga == 0) {
+            //se sono ad fine riga
+            start = -1;
+            end = 0;
+        }
+        for (let x = start; x<=end; x++) { //sull'asse delle x parto ciclando la cella di sinistra, poi quella centrale e infine quella a destra
+            
+            let cellaTest = cella + x + (y * cellePerRiga);
+            if (bombe.includes(cellaTest)) {
                 conteggio++;
             }
+            
         }
     }
     return conteggio;
